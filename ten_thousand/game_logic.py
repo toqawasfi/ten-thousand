@@ -144,10 +144,11 @@ class GameLogic ():
        
 
 
-    # roll_dice()  
+ 
 
 if __name__ == "__main__":
-  example1=GameLogic()
+  # example1=GameLogic()
+  print(GameLogic.roll_dice(2))  
  
 
 #   print(example1.calculate_score())
