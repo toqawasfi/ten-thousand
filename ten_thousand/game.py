@@ -1,4 +1,4 @@
-from ten_thousand.game_logic import GameLogic
+from game_logic import GameLogic
 # ten_thousand.
 score = 0
 total = 0
@@ -91,11 +91,11 @@ def play(roller=GameLogic.roll_dice):
             else:
                 print("Invalid input. Try again.")
 
-            def hot_dice_fun(kept_dice, unbanked_score,num_round):
-              round_score = GameLogic.calculate_score(kept_dice)
-              unbanked_score += round_score
-              num_dice = 6
-              print(f"You have {unbanked_score} unbanked points and 6 dice remaining")
+            # def hot_dice_fun(kept_dice, unbanked_score,num_round):
+            #   round_score = GameLogic.calculate_score(kept_dice)
+            #   unbanked_score += round_score
+            #   num_dice = 6
+            #   print(f"You have {unbanked_score} unbanked points and 6 dice remaining")
 
     print(f"Thanks for playing. You earned {total} points")
            
