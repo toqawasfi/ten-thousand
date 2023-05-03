@@ -11,4 +11,4 @@ python ten_thousand/game_logic.py
 ## How to use your library?
 pip install pytest
 pytest
-[V3pr](https://github.com/toqawasfi/ten-thousand/pull/3)
+[V4pr](https://github.com/toqawasfi/ten-thousand/pull/3)
