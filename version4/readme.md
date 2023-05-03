@@ -1,5 +1,5 @@
-# LAB - Class 08
-## Project: Ten Thousand - version 3
+# LAB - Class 09
+## Project: Ten Thousand - version 4
 ### Author: Toqa Bany Yassen & Doha Khamiseh
 
 ## Setup
