@@ -67,7 +67,7 @@ def play(roller=GameLogic.roll_dice):
                     val = GameLogic.validate_keepers(dice,kept_dice)
                     hot_check = GameLogic.get_scorers(kept_dice)
 
-                    if len(hot_check) == 6 and not val:
+                    if len(hot_check) == 6 and  val:
 
                      choice = hot_dice_fun(kept_dice, unbanked_score)
                 
@@ -91,11 +91,11 @@ def play(roller=GameLogic.roll_dice):
             else:
                 print("Invalid input. Try again.")
 
-            # def hot_dice_fun(kept_dice, unbanked_score,num_round):
-            #   round_score = GameLogic.calculate_score(kept_dice)
-            #   unbanked_score += round_score
-            #   num_dice = 6
-            #   print(f"You have {unbanked_score} unbanked points and 6 dice remaining")
+            def hot_dice_fun(kept_dice, unbanked_score,num_round):
+              round_score = GameLogic.calculate_score(kept_dice)
+              unbanked_score += round_score
+              num_dice = 6
+              print(f"You have {unbanked_score} unbanked points and 6 dice remaining")
 
     print(f"Thanks for playing. You earned {total} points")
            
