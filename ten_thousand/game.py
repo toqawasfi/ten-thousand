@@ -1,4 +1,4 @@
-from game_logic import GameLogic
+from ten_thousand.game_logic import GameLogic
 # ten_thousand.
 score = 0
 total = 0
@@ -6,16 +6,9 @@ total = 0
 
 
 
-rounds=15
 
-def play(roller=GameLogic.roll_dice):
-    '''
-    play method responsible for operating the game
-    args:
-    receives a function to roll dice and generates 6 numbers
-    returns:
-    The Game with different Edge cases
-    '''
+
+def play(roller=GameLogic.roll_dice,num_rounds=20):
     global total
     total = 0
     print("Welcome to Ten Thousand")
@@ -25,7 +18,7 @@ def play(roller=GameLogic.roll_dice):
         print("OK. Maybe another time")
         return
     
-    for num_round in range(1, 4):
+    for num_round in range(1, num_rounds+1):
         print(f"Starting round {num_round}")
         num_dice = 6
         round_score = 0
@@ -48,7 +41,8 @@ def play(roller=GameLogic.roll_dice):
              num_dice = 6
              continue
             
-            input_str = input("Enter dice to keep, or (q)uit:\n> ")
+            print("Enter dice to keep, or (q)uit:")
+            input_str =  input("> ")
             if input_str == "q":
                 print(f"Thanks for playing. You earned {total} points")
                 return
@@ -58,26 +52,37 @@ def play(roller=GameLogic.roll_dice):
             while (val==False):
                 print("Cheater!!! Or possibly made a typo...")
                 print("*** ", " ".join(str(d) for d in dice), " ***")
-                input_str = input("Enter dice to keep, or (q)uit:\n> ")
+                print("Enter dice to keep, or (q)uit:")
+                input_str =  input("> ")
                 if input_str == "q":
                  print(f"Thanks for playing. You earned {total} points")
                  return
                 else:
                     kept_dice = tuple(int(d) for d in input_str.replace(" ","") if d.isdigit())
                     val = GameLogic.validate_keepers(dice,kept_dice)
-                    hot_check = GameLogic.get_scorers(kept_dice)
+                    # hot_check = GameLogic.get_scorers(kept_dice)
 
-                    if len(hot_check) == 6 and  val:
-
-                     choice = hot_dice_fun(kept_dice, unbanked_score)
+       
                 
                 
- 
+            hot_check = GameLogic.get_scorers(kept_dice)
+            # print( len(hot_check) == 6 and val)
+            # print(hot_check,val)
             round_score += GameLogic.calculate_score(kept_dice)
             num_dice -= len(kept_dice)
             unbanked_score = round_score + total
+            
+            # print("test")
+            # hot_check = GameLogic.get_scorers(kept_dice)
+            if len(hot_check) == 6 and val:
+                    #   unbanked_score += round_score
+                      num_dice = 6
+                      round_score=unbanked_score
+                     
+
             print(f"You have {round_score} unbanked points and {num_dice} dice remaining")
-            input_str = input("(r)oll again, (b)ank your points or (q)uit:\n> ")
+            print("(r)oll again, (b)ank your points or (q)uit:")
+            input_str =  input("> ")
             if input_str == "b":
                 total += round_score
                 print(f"You banked {round_score} points in round {num_round}")
@@ -91,11 +96,14 @@ def play(roller=GameLogic.roll_dice):
             else:
                 print("Invalid input. Try again.")
 
-            def hot_dice_fun(kept_dice, unbanked_score,num_round):
-              round_score = GameLogic.calculate_score(kept_dice)
-              unbanked_score += round_score
-              num_dice = 6
-              print(f"You have {unbanked_score} unbanked points and 6 dice remaining")
+            # def hot_dice_fun(kept_dice, unbanked_score):
+            #   round_score = GameLogic.calculate_score(kept_dice)
+            #   unbanked_score += round_score
+            #   num_dice = 6
+            #   print(f"You have {unbanked_score} unbanked points and 6 dice remaining")
+            #   print("(r)oll again, (b)ank your points or (q)uit:")
+            #   choice = input("> ")
+            #   return choice
 
     print(f"Thanks for playing. You earned {total} points")
            
@@ -108,13 +116,6 @@ def play(roller=GameLogic.roll_dice):
 
 
 def format_roller(dice_roller):
-    '''
-    format_roller a method to reformat the input shape to match the sim file
-    Args:
-    receives an var(tuple) holds the value of the rolling dice
-    Returns:
-    the new format of the input
-    '''
     as_string = [str(value) for value in dice_roller]   
     format_roll = " ".join(as_string)
     return f"*** {format_roll} ***"
